@@ -2,20 +2,22 @@ from ClaseManejadorDePedidos import ManejadorDePedidos
 from ClaseManejadorDeRepartidores import ManejadorDeRepartidores
 
 if __name__ == "__main__":
-    ManejadorP = ManejadorDePedidos()
+    ManejadorPedidos = ManejadorDePedidos()
     ManejadorR = ManejadorDeRepartidores()
-    ManejadorP.Carga()
+    ManejadorPedidos.Carga()
     ManejadorR.Cargar()
     switch = int(input("1: Obtener Pedidos pendientes de un repartidor\n2: Listar repartidores\n3: Eliminar repartidor repetido\n4: Listar repartidores por comision\n"))
     while switch != 0:
         if switch == 1:
-            ManejadorP.InformarPedidosPendientes(int(input("Ingresar numero de repartidor: ")))
+            ManejadorPedidos.InformarPedidosPendientes(int(input("Ingresar numero de repartidor: ")))
         elif switch == 2:
-            ManejadorR.InformarRepartidores()
+            ManejadorR.InformarRepartidores(ManejadorPedidos)
         elif switch == 3:
-            print("c")
+            ManejadorR.EliminarRepartidor(int(input("Ingresar codigo de repartidor a eliminar: ")),ManejadorPedidos)
         elif switch == 4:
             ManejadorR.ListarPorComision()
+        elif switch == 5:
+            ManejadorR.MostrarRepartidores()
         else:
             print("Codigo Erroneo")
         switch = int(input("1: Obtener Pedidos pendientes de un repartidor\n2: Listar repartidores\n3: Eliminar repartidor repetido\n4: Listar repartidores por comision\n"))

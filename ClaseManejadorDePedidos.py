@@ -1,4 +1,5 @@
 import csv
+from tkinter.tix import Tree
 
 import numpy
 from ClasePedido import Pedido
@@ -36,3 +37,14 @@ class ManejadorDePedidos:
 
     def getPedido(self, numeropedido):
         return self.__ArregloPedidos[numeropedido]
+    
+    def getPedidosPendientes(self, idRepartidor):
+        ValorAdevolver = True
+        bandera = False
+        i = 0
+        while i < len(self.__ArregloPedidos) and bandera == False:
+            if self.__ArregloPedidos[i].getIdRepartidor() == idRepartidor and self.__ArregloPedidos[i].getEstado() == "N":
+                ValorAdevolver = False
+                bandera = True
+            i+=1
+        return ValorAdevolver

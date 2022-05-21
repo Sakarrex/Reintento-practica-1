@@ -1,4 +1,5 @@
 from msilib.schema import SelfReg
+from time import sleep
 
 
 class Repartidor:
@@ -16,6 +17,9 @@ class Repartidor:
         self.__telefono = str(telefono)
         self.__tipoDeMovilidad = str(Movilidad)
         self.__comision = comision
+
+    def __str__(self):
+        return "Id: {} Nombre: {} Apellido: {} Telefono: {}".format(self.__IdRepartidor,self.__nombre,self.__apellido,self.__telefono)
 
     def getId(self):
         return self.__IdRepartidor
@@ -41,3 +45,7 @@ class Repartidor:
     def __gt__ (self, otro):
         if type(otro) == Repartidor:
             return self.__comision < otro.getComision()
+    
+    def __eq__(self, otro):
+        if type(otro) == Repartidor:
+            return bool(self.__nombre == otro.getNombre() and self.__apellido == otro.getApellido() and self.__telefono == otro.getTelefono())
